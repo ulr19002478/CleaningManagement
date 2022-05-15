@@ -13,6 +13,7 @@ namespace CleaningManagement
         public String CleaningType { get; set; }
         public DateTime Time { get; set; }
         public Severity Severity { get; set; }
+        public List<Purchases> Purchases { get; set; }
 
         public Major(string cleaningType, Severity severity)
         {
@@ -20,6 +21,7 @@ namespace CleaningManagement
             CleaningType = cleaningType;
             Time = DateTime.Now;
             Severity = severity;
+            Purchases = new List<Purchases>();
         }
 
         public override string ToString()

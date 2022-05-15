@@ -31,5 +31,12 @@ namespace CleaningManagement
             MEDIUM,
             LOW
         }
+
+        public enum StaffType
+        {
+            MAINTENANCE_STAFF,
+            CLEANING_STAFF,
+            ADMIN
+        }
     }
 }

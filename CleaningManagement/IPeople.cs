@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CleaningManagement
 {
-    public interface ICleaning
+    public interface IPeople
     {
         public Guid Id { get; set; }
-        public String CleaningType { get; set; }
-        public DateTime Time { get; set; }
-        public List<Purchases> Purchases { get; set;}
+        public string FName { get; set; }
+        public string SName { get; set; }
+        public string Contact { get; set; }
     }
 }

@@ -8,13 +8,21 @@ namespace CleaningManagement
 {
     public class Bookings
     {
+        public Guid Id { get; set; }
         public string Details { get; set; }
         public DateTime TimeOfBooking { get; set; }
+        public Customer Customer { get; set; }
 
-        public Bookings(string details, DateTime timeOfBooking)
+        public Bookings(string details, Customer customer)
         {
+            Id = Guid.NewGuid();
             Details = details;
-            TimeOfBooking = timeOfBooking;
+            TimeOfBooking = DateTime.Now;
+            Customer = customer;
+        }
+        public override string ToString()
+        {
+            return $"Issue Id: {Id} Details: {Details} Time of booking: {TimeOfBooking}";
         }
     }
 }
