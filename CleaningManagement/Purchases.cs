@@ -22,7 +22,7 @@ namespace CleaningManagement
         }
         public override string ToString()
         {
-            return $"Service Id: {Id} Details: {Description} Date Created: {CreatedOn}";
+            return $"Service Id: {Id} Details: {Description} Cost: £{Cost} Date Created: {CreatedOn}";
         }
     }
 }

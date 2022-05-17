@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CleaningManagement
 {
-    internal class Services
+    public class Services
     {
         public Guid Id { get; set; }
         public string Information { get; set; }
@@ -14,13 +14,13 @@ namespace CleaningManagement
         public DateTime DateStarted { get; set; }
         public DateTime DateEnded { get; set; }
 
-        public Services(string information, bool open, DateTime dateEnded)
+        public Services(string information, bool open)
         {
             Id = Guid.NewGuid();
             Information = information;
             Open = open;
             DateStarted = DateTime.Now;
-            DateEnded = dateEnded;
+            DateEnded = DateTime.Now;
         }
         public override string ToString()
         {
