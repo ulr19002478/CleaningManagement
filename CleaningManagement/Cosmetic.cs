@@ -12,13 +12,15 @@ namespace CleaningManagement
         public String CleaningType { get; set; }
         public DateTime Time { get; set; }
         public List<Purchases> Purchases { get; set; }
+        public Customer Customer { get; set; }
 
-        public Cosmetic(string cleaningType)
+        public Cosmetic(string cleaningType, Customer customer)
         {
             Id = Guid.NewGuid();
             CleaningType = cleaningType;
             Time = DateTime.Now;
             Purchases = new List<Purchases>();
+            Customer = customer;
         }
         public override string ToString()
         {

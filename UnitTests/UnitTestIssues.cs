@@ -13,7 +13,7 @@ namespace UnitTests
             Cosmetic issuesToTests;
 
             //Act
-            issuesToTests = new Cosmetic("Windows Need Cleaning");
+            issuesToTests = new Cosmetic("Windows Need Cleaning",null);
             var testString = issuesToTests.ToString();
 
             //Assert

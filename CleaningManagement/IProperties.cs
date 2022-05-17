@@ -11,5 +11,6 @@ namespace CleaningManagement
         public Guid Id { get; set; }
         public string Address { get; set; }
         public List<ICleaning> Issues { get; set; }
+        public Customer Customer { get; set; }
     }
 }

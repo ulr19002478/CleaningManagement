@@ -13,7 +13,7 @@ namespace UnitTests
             Commercial issuesToTests;
 
             //Act
-            issuesToTests = new Commercial("123",5, Enums.CommercialType.OFFICE);
+            issuesToTests = new Commercial("123",5, Enums.CommercialType.OFFICE, null);
             var testString = issuesToTests.ToString();
 
             //Assert
@@ -26,7 +26,7 @@ namespace UnitTests
             Domestic issuesToTests;
 
             //Act
-            issuesToTests = new Domestic("123",5,Enums.DomesticType.COTTAGE);
+            issuesToTests = new Domestic("123",5,Enums.DomesticType.COTTAGE, null);
             var testString = issuesToTests.ToString();
 
             //Assert
