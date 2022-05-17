@@ -26,7 +26,7 @@ namespace CleaningManagement
         static void MainMenu()
         {
             //Main Menu
-            var menuOption = Prompt.Select("Where would you like to go: ", new[] { "\nProperties", "Bookings", "Customers", "Purchases", "Cleaning Issues\n" });
+            var menuOption = Prompt.Select("\nWhere would you like to go: \n", new[] { "Properties", "Bookings", "Customers", "Purchases", "Cleaning Issues" });
 
             if (menuOption == "Properties")
             {
