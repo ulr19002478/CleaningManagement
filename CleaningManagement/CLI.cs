@@ -15,6 +15,20 @@ namespace CleaningManagement
         {
             Console.Clear();
 
+            //Main Menu
+            var menuOption = Prompt.Select("Where would you like to go: ", new[] { "Properties", "Bookings","Customers" });
+
+            if (menuOption == "Properties")
+            {
+                SelectProp();
+            }
+            else return;
+
+            
+        }
+        //Method called if user chooses the property option
+        static void SelectProp()
+        {
             var prop = Prompt.Select("What type of property do you want to manage: ", new[] { "Domestic", "Commercial" });
 
 
@@ -28,20 +42,21 @@ namespace CleaningManagement
                 CreateCommercial();
             }
         }
-
+        //Method to create a domestic property
         static Domestic CreateDomestic()
         {
             var address = Prompt.Input<string>("Address");
             var type = Prompt.Select<DomesticType>("Select enum value");
-            var numOfBedrooms = Prompt.Input<int>("Number of bedrooms");
+            var numOfRooms = Prompt.Input<int>("Number of Rooms");
 
             var customer = CreateCustomer();
 
-            Domestic res = new Domestic(address, numOfBedrooms ,type, customer);
+            Domestic res = new Domestic(address, numOfRooms ,type, customer);
             es.Properties.Add(res);
             return res;
 
         }
+        //Method called to create a commercial property
         static Commercial CreateCommercial()
         {
             var address = Prompt.Input<string>("Address");
@@ -54,6 +69,7 @@ namespace CleaningManagement
             es.Properties.Add(res);
             return res;
         }
+        //Method called to create a customer
         static Customer CreateCustomer()
         {
             var fname = Prompt.Input<string>("Firstname");
@@ -61,5 +77,17 @@ namespace CleaningManagement
             var contact = Prompt.Input<String>("Contact");
             return new Customer(fname, sname, contact);
         }
+        //Method used to create a team member
+        static TeamMember CreateStaff()
+        {
+            var fname = Prompt.Input<string>("Firstname");
+            var sname = Prompt.Input<string>("Surname");
+            var contact = Prompt.Input<string>("Contact");
+            var username = Prompt.Input<string>("Username");
+            var secret = Prompt.Password("Type New Password");
+            var position = Prompt.Select<StaffType>("Select Position");
+            return new TeamMember(fname, sname, contact, username, secret, position);
+        }
+
     }
 }
