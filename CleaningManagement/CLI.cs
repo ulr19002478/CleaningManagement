@@ -26,7 +26,7 @@ namespace CleaningManagement
         static void MainMenu()
         {
             //Main Menu
-            var menuOption = Prompt.Select("\nWhere would you like to go: \n", new[] { "Properties", "Bookings", "Customers", "Purchases", "Cleaning Issues" });
+            var menuOption = Prompt.Select("Where would you like to go", new[] { "Properties", "Bookings", "Customers", "Purchases", "Cleaning Issues" });
 
             if (menuOption == "Properties")
             {
@@ -38,6 +38,7 @@ namespace CleaningManagement
             }
         }
 
+        //Method to select booking 
         static void SelectBook()
         {
             var book = Prompt.Select("Pick One", new[] { "Create new Booking", "View all Bookings","Return to Menu" });
@@ -121,7 +122,7 @@ namespace CleaningManagement
             var position = Prompt.Select<StaffType>("Select Position");
             return new TeamMember(fname, sname, contact, username, secret, position);
         }
-
+        //Method to create a booking
         static Bookings CreateBooking()
         {
             var details = Prompt.Input<string>("Detail Of the Issue");
