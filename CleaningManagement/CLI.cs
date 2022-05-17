@@ -11,28 +11,61 @@ namespace CleaningManagement
     public static class CLI
     {
         static CleaningSystem es = new CleaningSystem("SCS");
+        
+
         static void Main(string[] args)
         {
             Console.Clear();
 
+
+            MainMenu();
+
+
+        }
+
+        static void MainMenu()
+        {
             //Main Menu
-            var menuOption = Prompt.Select("Where would you like to go: ", new[] { "Properties", "Bookings","Customers" });
+            var menuOption = Prompt.Select("Where would you like to go: ", new[] { "\nProperties", "Bookings", "Customers", "Purchases", "Cleaning Issues\n" });
 
             if (menuOption == "Properties")
             {
                 SelectProp();
             }
-            else return;
+            else if (menuOption == "Bookings")
+            {
+                SelectBook();
+            }
+        }
 
-            
+        static void SelectBook()
+        {
+            var book = Prompt.Select("Pick One", new[] { "Create new Booking", "View all Bookings","Return to Menu" });
+            if(book == "Create new Booking")
+            {
+                es.SavedBookings.Add(CreateBooking());
+            }
+            else if(book == "View all Bookings")
+            {
+                foreach (var booking in es.SavedBookings)
+                {
+                    Console.WriteLine(booking.ToString());
+                }
+            }
+            else
+            {
+                SelectBook();
+            }
+
+            MainMenu();
         }
         //Method called if user chooses the property option
         static void SelectProp()
         {
-            var prop = Prompt.Select("What type of property do you want to manage: ", new[] { "Domestic", "Commercial" });
+            var prop = Prompt.Select("What type of property do you want to manage", new[] { "Domestic", "Commercial" });
 
 
-
+            //checks which option you picked
             if(prop == "Domestic")
             {
                 CreateDomestic();
@@ -87,6 +120,15 @@ namespace CleaningManagement
             var secret = Prompt.Password("Type New Password");
             var position = Prompt.Select<StaffType>("Select Position");
             return new TeamMember(fname, sname, contact, username, secret, position);
+        }
+
+        static Bookings CreateBooking()
+        {
+            var details = Prompt.Input<string>("Detail Of the Issue");
+            var customer = CreateCustomer();
+
+            return new Bookings(details,customer);
+            
         }
 
     }
