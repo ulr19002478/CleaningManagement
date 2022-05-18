@@ -7,21 +7,23 @@ using static CleaningManagement.Enums;
 
 namespace CleaningManagement
 {
-    internal class Domestic
+    public class Domestic : IProperties
     {
         public Guid Id { get; set; }
         public string Address { get; set; }
         public List<ICleaning> Issues { get; set; }
         public int NumberOfRooms { get; set; }
         public DomesticType Type { get; set; }
+        public Customer Customer { get; set; }
 
-        public Domestic(string address, int numberOfRooms, DomesticType type)
+        public Domestic(string address, int numberOfRooms, DomesticType type, Customer customer)
         {
             Id = Guid.NewGuid();
             Address = address;
             Issues = new List<ICleaning>();
             NumberOfRooms = numberOfRooms;
             Type = type;
+            Customer = customer;
         }
         public override string ToString()
         {
