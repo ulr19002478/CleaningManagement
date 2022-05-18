@@ -7,7 +7,7 @@ using static CleaningManagement.Enums;
 
 namespace CleaningManagement
 {
-    public class Commerical : IProperties
+    public class Commercial : IProperties
     {
         public Guid Id { get; set; }
         public string Address { get; set; }
@@ -15,7 +15,7 @@ namespace CleaningManagement
         public List<ICleaning> Issues { get; set; }
         public CommercialType Type { get; set; }
 
-        public Commerical(string address, double size, CommercialType type)
+        public Commercial(string address, double size, CommercialType type)
         {
             Id = Guid.NewGuid();
             Address = address;

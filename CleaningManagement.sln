@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleaningManagement", "CleaningManagement\CleaningManagement.csproj", "{8E09C939-173F-4DC9-A235-5B7AAC2716E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleaningManagement", "CleaningManagement\CleaningManagement.csproj", "{8E09C939-173F-4DC9-A235-5B7AAC2716E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{77E62C08-3557-44A2-8FC8-17D0BF66BEC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{77E62C08-3557-44A2-8FC8-17D0BF66BEC5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8E09C939-173F-4DC9-A235-5B7AAC2716E5} = {8E09C939-173F-4DC9-A235-5B7AAC2716E5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
