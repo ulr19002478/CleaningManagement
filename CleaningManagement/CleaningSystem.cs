@@ -12,6 +12,7 @@ namespace CleaningManagement
         public List<IProperties> Properties { get; set; }
         public List<IPeople> People { get; set; }
         public List<Bookings> SavedBookings { get; set; }
+        public List<Customer> SavedCustomers { get; set; }
 
     public CleaningSystem(string name)
         {
@@ -19,6 +20,7 @@ namespace CleaningManagement
             Properties = new List<IProperties>();
             People = new List<IPeople>();
             SavedBookings = new List<Bookings>();
+            SavedCustomers = new List<Customer>();
         }
     }
 }

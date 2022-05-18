@@ -36,8 +36,14 @@ namespace CleaningManagement
             {
                 SelectBook();
             }
+            else if(menuOption == "Customers")
+            {
+                SelectCustomer();
+            }
         }
+        
 
+        //ALL METHODS TO DO WITH BOOKING
         //Method to select booking 
         static void SelectBook()
         {
@@ -60,6 +66,19 @@ namespace CleaningManagement
 
             MainMenu();
         }
+
+        //Method to create a booking
+        static Bookings CreateBooking()
+        {
+            var details = Prompt.Input<string>("Detail Of the Issue");
+            var customer = CreateCustomer();
+
+            return new Bookings(details, customer);
+
+        }
+
+
+        //ALL METHODS TO DO WITH PROPERTY
         //Method called if user chooses the property option
         static void SelectProp()
         {
@@ -76,6 +95,7 @@ namespace CleaningManagement
                 CreateCommercial();
             }
         }
+
         //Method to create a domestic property
         static Domestic CreateDomestic()
         {
@@ -103,14 +123,7 @@ namespace CleaningManagement
             es.Properties.Add(res);
             return res;
         }
-        //Method called to create a customer
-        static Customer CreateCustomer()
-        {
-            var fname = Prompt.Input<string>("Firstname");
-            var sname = Prompt.Input<string>("Surname");
-            var contact = Prompt.Input<String>("Contact");
-            return new Customer(fname, sname, contact);
-        }
+        
         //Method used to create a team member
         static TeamMember CreateStaff()
         {
@@ -122,15 +135,42 @@ namespace CleaningManagement
             var position = Prompt.Select<StaffType>("Select Position");
             return new TeamMember(fname, sname, contact, username, secret, position);
         }
-        //Method to create a booking
-        static Bookings CreateBooking()
-        {
-            var details = Prompt.Input<string>("Detail Of the Issue");
-            var customer = CreateCustomer();
 
-            return new Bookings(details,customer);
-            
+        //ALL METHODS TO DO WITH CUSTOMER
+        static void SelectCustomer()
+        {
+            var customer = Prompt.Select("Pick One", new[] { "Create new Customer", "View all Customers", "Return to Menu" });
+            if (customer == "Create new Customer")
+            {
+                es.SavedCustomers.Add(CreateCustomer());
+                Console.Clear();
+                SelectCustomer();
+            }
+            else if (customer == "View all Customers")
+            {
+                foreach (var customers in es.SavedCustomers)
+                {
+                    Console.WriteLine(customers.ToString());
+                }
+
+                SelectCustomer();
+            }
+            else
+            {
+                MainMenu();
+            }
+
         }
+
+        //Method called to create a customer
+        static Customer CreateCustomer()
+        {
+            var fname = Prompt.Input<string>("Firstname");
+            var sname = Prompt.Input<string>("Surname");
+            var contact = Prompt.Input<String>("Contact");
+            return new Customer(fname, sname, contact);
+        }
+        
 
     }
 }
