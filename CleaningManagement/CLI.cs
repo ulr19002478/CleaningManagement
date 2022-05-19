@@ -22,8 +22,8 @@ namespace CleaningManagement
             Console.Clear();
 
             //Calls the method which starts off the program
-            //Start();
-            MainMenu();
+            Start();
+           
         }
 
         //ALL METHODS TO DO WITH THE MAIN MENU
