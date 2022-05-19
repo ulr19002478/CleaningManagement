@@ -48,7 +48,7 @@ namespace CleaningManagement
         {
             
             Console.Clear();//Clears the console so no text from other options are still on screen
-            var menuOption = Prompt.Select("Choose an option to Manage", new[] { "Manage Services","Manage People and Properties","Manage Issues" });
+            var menuOption = Prompt.Select("Choose an option to Manage", new[] { "Manage Services","Manage People and Properties","Manage Issues","Exit Program" });
 
             if (menuOption == "Manage Services") //If statement checks which option was picked and where it will lead to
             {
@@ -60,10 +60,14 @@ namespace CleaningManagement
                 SelectPeopandProp(); //Loads up people and property method
                 Console.Clear();
             }
-            else
+            else if(menuOption == "Manage Issues")
             {
                 SelectIssues(); //Loads up issues method
                 Console.Clear();
+            }
+            else
+            {
+                return;
             }
         }
         //Method which manages all of the services options
