@@ -10,6 +10,7 @@ namespace CleaningManagement
 {
     public static class CLI
     {
+        //Creates the main object
         static CleaningSystem es = new CleaningSystem("SCS");
 
 
@@ -21,21 +22,21 @@ namespace CleaningManagement
             Console.Clear();
 
             //Calls the method which starts off the program
-            Start();
+            //Start();
+            MainMenu();
         }
 
         //ALL METHODS TO DO WITH THE MAIN MENU
         //Method which creates a staff to start off the program
         static void Start()
         {
-            Console.Clear();
+            Console.Clear(); //Clears the console so no text from other options are still on screen
 
             var loginOption = Prompt.Select("Start Here", new[] { "Create Staff Account" });
             if (loginOption == "Create Staff Account")
             {
-                es.SavedStaff.Add(CreateStaff());
-                MainMenu();
-               
+                es.SavedStaff.Add(CreateStaff()); //Creates a staff account
+                MainMenu();  //Loads up the main menu after the user has created a staff account             
             }
             else
             {
@@ -46,20 +47,20 @@ namespace CleaningManagement
         static void MainMenu()
         {
             
-            Console.Clear();
+            Console.Clear();//Clears the console so no text from other options are still on screen
             var menuOption = Prompt.Select("Choose an option to Manage", new[] { "Manage Services","Manage People and Properties","Manage Issues" });
 
-            if (menuOption == "Manage Services")
+            if (menuOption == "Manage Services") //If statement checks which option was picked and where it will lead to
             {
-                SelectManageServices();
+                SelectManageServices(); //Loads up manage services method
             }
             else if (menuOption == "Manage People and Properties")
             {
-                selectPeopandProp();
+                SelectPeopandProp(); //Loads up people and property method
             }
             else
             {
-                SelectIssues();
+                SelectIssues(); //Loads up issues method
             }
         }
         //Method which manages all of the services options
@@ -68,11 +69,11 @@ namespace CleaningManagement
             var Manage = Prompt.Select("Select an option to manage", new[] { "Bookings", "Purchases", "Return to Menu" });
             if(Manage == "Bookings")
             {
-                SelectBook();
+                SelectBook(); //Goes to the booking method
             }
             else if(Manage == "Purchases")
             {
-                SelectPurchase();
+                SelectPurchase(); //Goes to the purchases method
             }
             else
             {
@@ -80,20 +81,20 @@ namespace CleaningManagement
             }
         }
         //Method used to manage properties and people
-        static void selectPeopandProp()
+        static void SelectPeopandProp()
         {
             var Manage = Prompt.Select("Select an option to manage", new[] { "Staff", "Customers", "Properties" });
             if(Manage == "Staff")
             {
-                SelectStaff();
+                SelectStaff(); //Goes to the staff method
             }
             else if(Manage == "Customers")
             {
-                SelectCustomer();
+                SelectCustomer(); //Goes to the customer method
             }
             else if(Manage == "Properties")
             {
-                SelectProp();
+                SelectProp(); //Goes to the property method
             }
             else
             {
@@ -107,19 +108,19 @@ namespace CleaningManagement
         static void SelectBook()
         {
             var book = Prompt.Select("Pick One", new[] { "Create new Booking", "View all Bookings", "Return to Menu" });
-            if (book == "Create new Booking")
+            if (book == "Create new Booking") //Checks which option has been picked
             {
                 es.SavedBookings.Add(CreateBooking());
-                Console.Clear();
+                Console.Clear(); //Clears the console so no text from other options are still on screen
                 SelectBook();
             }
             else if (book == "View all Bookings")
             {
-                foreach (var booking in es.SavedBookings)
+                foreach (var booking in es.SavedBookings) //turns the list into a variable 
                 {
-                    Console.WriteLine(booking.ToString());
+                    Console.WriteLine(booking.ToString()); //outputs the variable created
                 }
-                Console.WriteLine("\n");
+                Console.WriteLine("\n"); //line break
                 SelectBook();
             }
             else
@@ -133,7 +134,7 @@ namespace CleaningManagement
         {
             var details = Prompt.Input<string>("Detail Of the Issue");
             var customer = CreateCustomer();
-
+            es.SavedCustomers.Add(customer);
             return new Bookings(details, customer);
         }
 
@@ -147,17 +148,17 @@ namespace CleaningManagement
             if (prop == "Add Properties")
             {
                 var option = Prompt.Select("What type of property do you want to manage", new[] { "Domestic", "Commercial" });
-                if (option == "Domestic")
+                if (option == "Domestic") //If statement checks what option was picked
                 {
                     es.SavedDomestic.Add(CreateDomestic());
-                    Console.Clear();
-                    SelectProp();
+                    Console.Clear(); //Clears the console so no text from other options are still on screen
+                    SelectProp(); //Returns to the select property method once a new object has been created
                 }
                 else
                 {
                     es.SavedCommercial.Add(CreateCommercial());
-                    Console.Clear();
-                    SelectProp();
+                    Console.Clear(); //Clears the console so no text from other options are still on screen
+                    SelectProp(); //Returns back to the start of the proeprty
                 }
             }
             else if (prop == "View Properties")
@@ -169,8 +170,9 @@ namespace CleaningManagement
                     {
                         Console.WriteLine(domproperty.ToString());
                         Console.WriteLine("\n");
-                        SelectProp();
+                        
                     }
+                    SelectProp();
                 }
 
                 else
@@ -179,8 +181,9 @@ namespace CleaningManagement
                     {
                         Console.WriteLine(comproperty.ToString());
                         Console.WriteLine("\n");
-                        SelectProp();
+                        
                     }
+                    SelectProp();
                 }
             }
             else
@@ -222,7 +225,7 @@ namespace CleaningManagement
             if (customer == "Create new Customer")
             {
                 es.SavedCustomers.Add(CreateCustomer());
-                Console.Clear();
+                Console.Clear(); //Clears the console so no text from other options are still on screen
                 SelectCustomer();
             }
             else if (customer == "View all Customers")
@@ -251,13 +254,14 @@ namespace CleaningManagement
 
         //--------------------------------------------------------------------------------
         //ALL METHODS TO DO WITH PURCHASES
+        //Method used to manage all purchases
         static void SelectPurchase()
         {
             var book = Prompt.Select("Choose an option", new[] { "Add Purchase", "View Purchases", "Return to Menu" });
             if (book == "Add Purchase")
             {
                 es.SavedPurchases.Add(CreatePurchase());
-                Console.Clear();
+                Console.Clear(); //Clears the console so no text from other options are still on screen
                 SelectPurchase();
             }
             else if (book == "View Purchases")
@@ -287,50 +291,59 @@ namespace CleaningManagement
 
         //--------------------------------------------------------------------------------
         //ALL METHODS USED FOR CLEANING AND ISSUES
+        //Method used to manage all issues
         static void SelectIssues()
         {
             //picks between major issues or cosmetic issues 
             var issues = Prompt.Select("Please choose the type of issue", new [] {"Major", "Cosmetic","Return to Menu"});
             if (issues == "Major")
             {
+                Console.Clear(); 
                 var mIssue = Prompt.Select("Choose an option", new[] { "Report Issue", "View Issues","Go Back","Return to Menu" });
                 if (mIssue == "Report Issue")
                 {
-                    es.SavedMIssues.Add(CreateMajor());
                     Console.Clear();
+                    es.SavedMIssues.Add(CreateMajor());
                     SelectIssues();
                 }
                 else if (mIssue == "View Issues")
                 {
+                    Console.Clear();
                     foreach (var major in es.SavedMIssues)
                     {
                         Console.WriteLine(major.ToString());
-                        Console.WriteLine("\n");
-                        SelectPurchase();
+                        Console.WriteLine("\n");  
                     }
+                    SelectIssues();
                 }
                 else if(mIssue == "Go Back")
                 {
-                    SelectIssues();
+                    SelectIssues(); //goes back to the start of the method
+                }
+                else
+                {
+                    MainMenu(); //Returns back to the main menu
                 }
             }
             else if(issues == "Cosmetic")
             {
+                Console.Clear();
                 var cIssue = Prompt.Select("Choose an option", new[] { "Report Issue", "View Issues","Go Back", "Return to Menu" });
                 if (cIssue == "Report Issue")
                 {
-                    es.SavedCIssues.Add(CreateCosmetic());
                     Console.Clear();
-                    SelectPurchase();
+                    es.SavedCIssues.Add(CreateCosmetic());
+                    SelectIssues();
                 }
                 else if (cIssue == "View Issues")
                 {
+                    Console.Clear();
                     foreach (var cosmetic in es.SavedCIssues)
                     {
                         Console.WriteLine(cosmetic.ToString());
-                        Console.WriteLine("\n");
-                        SelectPurchase();
+                        Console.WriteLine("\n"); 
                     }
+                    SelectPurchase();
                 }
                 else if (cIssue == "Go Back")
                 {
@@ -349,7 +362,6 @@ namespace CleaningManagement
             var issueName = Prompt.Input<string>("Issue Name");
             var severity = Prompt.Select<Severity>("Major Issue Severity");
             var customer = CreateCustomer();
-
             return new Major(issueName, severity, customer);
         }
 
@@ -358,27 +370,28 @@ namespace CleaningManagement
         {
             var issueName = Prompt.Input<string>("Issue Name");
             var customer = CreateCustomer();
-
             return new Cosmetic(issueName, customer);
         }
 
         //ALL METHODS TO DO WITH STAFF
+        //Method used to manage all the staff
         static void SelectStaff()
         {
             var staffOption = Prompt.Select("Choose an option", new[] { "Create Staff Member", "View Staff Members", "Return to Menu" });
             if (staffOption == "Create Staff Member")
             {
+                Console.Clear(); 
                 es.SavedStaff.Add(CreateStaff());
-                Console.Clear();
                 SelectStaff();
             }
             else if (staffOption == "View Staff Members")
             {
+                Console.Clear();
                 foreach (var members in es.SavedStaff)
                 {
                     Console.WriteLine(members.ToString());
                     Console.WriteLine("\n");
-                    SelectPurchase();
+                    SelectStaff();
                 }
             }
             else
