@@ -27,7 +27,7 @@ namespace UnitTests
             Major issuesToTests;
 
             //Act
-            issuesToTests = new Major("Fire Damage", Enums.Severity.MEDIUM);
+            issuesToTests = new Major("Fire Damage", Enums.Severity.MEDIUM, null);
             var testString = issuesToTests.ToString();
 
             //Assert
