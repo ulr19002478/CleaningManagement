@@ -41,11 +41,11 @@ namespace UnitTests
             Purchases issuesToTests;
 
             //Act
-            issuesToTests = new Purchases("Test", 9.55);
+            issuesToTests = new Purchases("Test","Test", 9.55, null);
             var testString = issuesToTests.ToString();
 
             //Assert
-            Assert.Equal($"Service Id: {issuesToTests.Id} Details: Test Cost: £9.55 Date Created: {DateTime.Now}", testString);
+            Assert.Equal($"Item Id: {issuesToTests.Id} Item Name: Test Item Description: Test Cost: £9.55 Date Created: {DateTime.Now}", testString);
         }
     }
 }

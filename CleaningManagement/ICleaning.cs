@@ -12,5 +12,7 @@ namespace CleaningManagement
         public String CleaningType { get; set; }
         public DateTime Time { get; set; }
         public List<Purchases> Purchases { get; set;}
+
+        public Customer Customer { get; set; }    
     }
 }

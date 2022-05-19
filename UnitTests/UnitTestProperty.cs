@@ -12,7 +12,7 @@ namespace UnitTests
             Commercial propertyToTests;
 
             //Act
-            propertyToTests = new Commercial("123",123, Enums.CommercialType.OFFICE);
+            propertyToTests = new Commercial("123",123, Enums.CommercialType.OFFICE,null);
             var testString = propertyToTests.ToString();
 
             //Assert
