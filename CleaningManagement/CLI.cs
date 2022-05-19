@@ -53,14 +53,17 @@ namespace CleaningManagement
             if (menuOption == "Manage Services") //If statement checks which option was picked and where it will lead to
             {
                 SelectManageServices(); //Loads up manage services method
+                Console.Clear();
             }
             else if (menuOption == "Manage People and Properties")
             {
                 SelectPeopandProp(); //Loads up people and property method
+                Console.Clear();
             }
             else
             {
                 SelectIssues(); //Loads up issues method
+                Console.Clear();
             }
         }
         //Method which manages all of the services options
@@ -70,10 +73,12 @@ namespace CleaningManagement
             if(Manage == "Bookings")
             {
                 SelectBook(); //Goes to the booking method
+                Console.Clear();
             }
             else if(Manage == "Purchases")
             {
                 SelectPurchase(); //Goes to the purchases method
+                Console.Clear();
             }
             else
             {
@@ -107,7 +112,7 @@ namespace CleaningManagement
         //Method to select booking 
         static void SelectBook()
         {
-            var book = Prompt.Select("Pick One", new[] { "Create new Booking", "View all Bookings", "Return to Menu" });
+            var book = Prompt.Select("Pick One", new[] { "Create new Booking", "View all Bookings","Go Back", "Return to Menu" });
             if (book == "Create new Booking") //Checks which option has been picked
             {
                 es.SavedBookings.Add(CreateBooking());
@@ -118,10 +123,16 @@ namespace CleaningManagement
             {
                 foreach (var booking in es.SavedBookings) //turns the list into a variable 
                 {
+                    Console.Clear();
                     Console.WriteLine(booking.ToString()); //outputs the variable created
+                    Console.WriteLine("\n"); //line break
                 }
-                Console.WriteLine("\n"); //line break
-                SelectBook();
+                SelectBook();                
+            }
+            else if(book == "Go Back")
+            {
+                SelectManageServices();
+                Console.Clear();
             }
             else
             {
@@ -257,7 +268,7 @@ namespace CleaningManagement
         //Method used to manage all purchases
         static void SelectPurchase()
         {
-            var book = Prompt.Select("Choose an option", new[] { "Add Purchase", "View Purchases", "Return to Menu" });
+            var book = Prompt.Select("Choose an option", new[] { "Add Purchase", "View Purchases","Go Back", "Return to Menu" });
             if (book == "Add Purchase")
             {
                 es.SavedPurchases.Add(CreatePurchase());
@@ -268,10 +279,16 @@ namespace CleaningManagement
             {
                 foreach (var purchase in es.SavedPurchases)
                 {
+                    Console.Clear();
                     Console.WriteLine(purchase.ToString());
                     Console.WriteLine("\n");
-                    SelectPurchase();
+                    SelectPurchase();  
                 }
+            }
+            else if(book == "Go Back")
+            {
+                SelectManageServices();
+                Console.Clear();
             }
             else
             {
